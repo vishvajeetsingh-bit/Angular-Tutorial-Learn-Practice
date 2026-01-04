@@ -1,0 +1,6 @@
+p{
+  border: 1px solid pink;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}

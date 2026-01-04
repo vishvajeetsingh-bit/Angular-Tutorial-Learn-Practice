@@ -1,0 +1,40 @@
+/* .btn{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 10px;
+  color : #fff;
+  cursor : pointer;
+  border : 1px solid #000  ;
+}
+.bg-red{
+  background-color: red;
+}
+.bg-black{
+  background-color: black;
+}
+.bg-green{
+  background-color: green;
+}
+.btn:hover{
+  border : 1px solid #fff;
+}
+.count{
+  width: 100px;
+  background: grey;
+  margin-bottom: 30px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 30px;
+  margin: auto; 
+} */
+ .task-list{
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none ; 
+ }
+ .error{
+  color:red;
+  font-size: smaller;
+  font-weight: 100;
+ }

@@ -1,0 +1,168 @@
+/* Variables for colors and animation */
+:host {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.not-found-container {
+  --x: 50%;
+  --y: 50%;
+  --eye-x: 0px;
+  --eye-y: 0px;
+  
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #050505;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: crosshair; /* Hides default cursor for immersion */
+}
+
+/* --- The Flashlight Effect --- */
+.flashlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at var(--x) var(--y), 
+    transparent 10%, 
+    rgba(0, 0, 0, 0.95) 40%
+  );
+  z-index: 10;
+  pointer-events: none; /* Let clicks pass through */
+}
+
+/* --- Content Styling --- */
+.content {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  color: #fff;
+}
+
+.error-code {
+  font-size: 12rem;
+  font-weight: 900;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: #2a2a2a; /* Dark text that reveals on hover/light */
+  text-shadow: 
+    -1px -1px 0 #333,
+    1px -1px 0 #333,
+    -1px 1px 0 #333,
+    1px 1px 0 #333;
+}
+
+/* Text glow when light is near (optional simulation) */
+.error-code span {
+  transition: color 0.2s;
+}
+
+/* --- The Eyes --- */
+.ghost-eye-wrapper {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.eye {
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+}
+
+.pupil {
+  width: 25px;
+  height: 25px;
+  background: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translate(var(--eye-x), var(--eye-y));
+  /* Small reflection in pupil */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+  }
+}
+
+/* --- Typography --- */
+.message {
+  font-size: 2rem;
+  margin: 20px 0 10px;
+  color: #eee;
+  opacity: 0.8;
+  letter-spacing: 1px;
+}
+
+.sub-message {
+  font-size: 1.1rem;
+  color: #888;
+  margin-bottom: 40px;
+}
+
+/* --- Interactive Button --- */
+.home-btn {
+  position: relative;
+  display: inline-block;
+  padding: 15px 40px;
+  background: transparent;
+  color: #0ff; /* Cyan neon */
+  border: 2px solid #0ff;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  overflow: hidden;
+  transition: 0.3s;
+  cursor: pointer; /* Restore cursor pointer for button */
+  pointer-events: auto;
+  z-index: 20; /* Above flashlight */
+}
+
+.home-btn:hover {
+  background: #0ff;
+  color: #000;
+  box-shadow: 0 0 30px #0ff;
+}
+
+/* Floating animation for the whole content */
+.content {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .error-code { font-size: 6rem; }
+  .eye { width: 40px; height: 40px; }
+  .pupil { width: 15px; height: 15px; }
+  .flashlight { background: rgba(0,0,0,0.85); } /* Less aggressive darkness on mobile */
+}
